@@ -1,26 +1,13 @@
 # devops-bsi
 
-This is a basic FastAPI application with three endpoints:
+fiz todos os arquivos e configurações, incluindo secrects, kind, config(POD, SERVICE, DEPLOYMENT, KUSTOMIZATION)
 
-- `/` – Returns a welcome message
-- `/square/{x}` – Returns the square of `x`
-- `/double/{x}` – Returns the double of `x`
+por algum motivo depois que apaguei meus cluster ele não criava mais nenhum
 
-## 🚀 Requirements
+$ kind create cluster --config kind.yaml --name devops
+Creating cluster "devops" ...
+⠊⠁ Ensuring node image (kindest/node:v1.33.1) 🖼
 
-- Python 3.8+
-- [pip](https://pip.pypa.io/en/stable/)
-- [virtualenv](https://virtualenv.pypa.io/) (optional but recommended)
+deixei por 15 minutos e nada
 
-## 📦 Setup
-**Clone the repository (or copy the code)**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-```bash
-pip install fastapi uvicorn
-```
-```bash
-uvicorn main:app --reload
-```
+fiz oq consegui sem o cluster
