@@ -35,11 +35,9 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v6
         with:
-          context: .
           push: true
-          tags: |
-            mateuslopess/devops-desafio:latest
-      
+          tags: mateuslopess/devops-desafio
+                  
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v2
 
