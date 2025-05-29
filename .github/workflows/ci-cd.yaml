@@ -33,27 +33,30 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           
       - name: Build and Push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
-          tags: mateuslopess/devops-desafio
-                  
-      # - name: Setup Kustomize
-      #   uses: imranismail/setup-kustomize@v2
+          tags: |
+            mateuslopess/devops-desafio:latest
+            mateuslopess/devops-desafio:${{ github.sha }}
+      
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
 
-      # - name: Update kustomization.yaml
-      #   run: |
-      #     cd k8s
-      #     kustomize edit set image devops-desafio=mateuslopess/devops-desafio:$GITHUB_SHA
+      - name: Update kustomization.yaml
+        run: |
+          cd k8s
+          kustomize edit set image devops-desafio=mateuslopess/devops-desafio:$GITHUB_SHA
 
-      # - name: Commit changes
-      #   run: |
-      #     git config --local user.name "GitHub Actions"
-      #     git config --local user.email "actions@github.com"
-      #     git commit -am "Update kustomization.yaml with new image"
+      - name: Commit changes
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git commit -am "Update kustomization.yaml with new image"
 
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.DOCKER_HUB_TOKEN }}
-      #     branch: ${{ github.ref }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
