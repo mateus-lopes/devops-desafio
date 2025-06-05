@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - Dockerfile
-      - .github/workflows/docker-build.yaml
+      - .github/workflows/kustomize.yaml
       - src/**
 jobs:
   update-kustomize:
