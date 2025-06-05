@@ -6,4 +6,4 @@ resources:
 images:
 - name: devops-desafio
   newName: mateuslopess/devops-desafio
-  newTag: ad16b4945429b3c51cac3807fc6787352295c36d
+  newTag: abccd8fddbaa9efeac5c3d1612347f102bd7e4a7
