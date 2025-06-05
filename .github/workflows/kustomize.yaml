@@ -20,11 +20,14 @@ jobs:
           cd config/
           kustomize edit set image devops-desafio=mateuslopess/devops-desafio:${{ github.sha }}
 
-      - name: Commit and Push
+      - name: Commit changes
         run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
-          git add config/kustomization.yaml
-          git diff --cached --quiet || git commit -m "Update kustomization.yaml with new image"
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/mateus-lopes/devops-desafio.git
-          git push origin main
+          git commit -am "Update kustomization.yaml with new image"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
