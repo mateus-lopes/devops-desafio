@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello World 3"}
+    return {"message": "Hello World 4"}
 
 
 @app.get("/square/{x}")
