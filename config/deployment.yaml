@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: devops-desafio
-          image: mateuslopess/devops-desafio
+          image: devops-desafio
           ports:
             - containerPort: 8000
