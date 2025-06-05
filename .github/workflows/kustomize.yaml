@@ -1,0 +1,30 @@
+name: Kustomization
+on:
+  push:
+    paths:
+      - Dockerfile
+      - .github/workflows/docker-build.yaml
+      - src/**
+jobs:
+  update-kustomize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Update kustomization.yaml
+        run: |
+          cd config/
+          kustomize edit set image devops-desafio=mateuslopess/devops-desafio:${{ github.sha }}
+
+      - name: Commit and Push
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git add config/kustomization.yaml
+          git diff --cached --quiet || git commit -m "Update kustomization.yaml with new image"
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/mateus-lopes/devops-desafio.git
+          git push origin main
