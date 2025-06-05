@@ -4,7 +4,7 @@ on:
     paths:
       - Dockerfile
       - .github/workflows/docker-build.yaml
-      - src/**
+      - "**.py"
 jobs:
   docker:
     runs-on: ubuntu-latest
