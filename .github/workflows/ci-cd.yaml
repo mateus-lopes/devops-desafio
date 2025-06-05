@@ -46,7 +46,7 @@ jobs:
 
       - name: Update kustomization.yaml
         run: |
-          cd k8s
+          cd config/
           kustomize edit set image devops-desafio=mateuslopess/devops-desafio:$GITHUB_SHA
 
       - name: Commit changes

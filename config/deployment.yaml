@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: devops-desafio
 spec:
-    replicas: 3
-    selector:
-        matchLabels:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-desafio
+  template:
+    metadata:
+      labels:
         app: devops-desafio
-    template:
-        metadata:
-        labels:
-          app: devops-desafio
-        spec:
-        containers:
+    spec:
+      containers:
         - name: devops-desafio
           image: mateuslopess/devops-desafio
           ports:
-          - containerPort: 8000
+            - containerPort: 8000
